@@ -41,13 +41,13 @@ public final class Student {
     @Override
     public String toString() {
 
-        String mid = (middleName == null || middleName.isBlank()) ? "" : " " + middleName;
+        String middle = (middleName == null || middleName.isBlank()) ? "" : " " + middleName;
         String ext = (extensionName == null || extensionName.isBlank()) ? "" : " " + extensionName;
 
         return id + " | " +
                 lastName + ", " +
                 firstName + " " +
-                mid +
+                middle +
                 suffix +
                 " | " + gender +
                 " | Age: " + age +
