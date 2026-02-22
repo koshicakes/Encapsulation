@@ -41,14 +41,13 @@ public final class Student {
     @Override
     public String toString() {
 
-        String suffix = (extensionName == null || extensionName.isBlank())
-                ? ""
-                : " " + extensionName;
+        String middle = (middleName == null || middleName.isBlank()) ? "" : " " + middleName;
+        String ext = (extensionName == null || extensionName.isBlank()) ? "" : " " + extensionName;
 
         return id + " | " +
                 lastName + ", " +
                 firstName + " " +
-                (middleName == null ? "" : middleName) +
+                middle +
                 suffix +
                 " | " + gender +
                 " | Age: " + age +
@@ -87,8 +86,16 @@ public final class Student {
 
         public Student build() {
 
-            if(firstName == null || lastName == null || course == null)
-                throw new IllegalStateException("Missing required fields");
+              if (firstName == null || firstName.isBlank()) 
+                throw new IllegalStateException("First name is required.");
+            if (lastName == null || lastName.isBlank()) 
+                throw new IllegalStateException("Last name is required.");
+            if (course == null || course.isBlank()) 
+                throw new IllegalStateException("Course is required.");
+            if (age < 0) 
+                throw new IllegalStateException("Age cannot be negative.");
+            if (yearLevel < 1 || yearLevel > 4) 
+                throw new IllegalStateException("Year level must be between 1 and 4.");
 
             return new Student(this);
         }
